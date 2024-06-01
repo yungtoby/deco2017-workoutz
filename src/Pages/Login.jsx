@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import main_header from '../Images/main_header.png'
 import insta_logo from '../Images/insta.png'
 import twitter_logo from '../Images/twitter.png'
@@ -30,7 +32,7 @@ function Login() {
             <div className="loginContentInputDiv"><img src={user_login_pic} /><input type="text" placeholder="Email or Username"></input></div>
             <div className="loginContentInputDiv"><img src={pass_login_pic} /><input type="password" placeholder="Password"></input></div>
           </form>
-            <input id="submitLoginButton" type="submit" value={"Login"}></input>
+            <Link to="/home"><input id="submitLoginButton" type="submit" value={"Login"}></input></Link>
           <div className="loginContentSignup">
             <p>Sign up</p>
             <img src={signup_pic} />

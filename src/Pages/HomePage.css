@@ -1,0 +1,19 @@
+/* ##### START: HomePage CSS ##### */
+
+/* Homepage wrapper wrapping around homepage: */
+.homePage_wrapper {
+    border: 1px solid white; /* DEBUG */
+    display: grid;
+    width: 1000px;
+    margin: auto;
+  
+    grid-template-columns: 500px 500px; 
+    grid-template-rows: 50px 550px 50px; 
+    gap: 20px 10px; 
+    grid-template-areas: 
+      "homePageHeader homePageHeader"
+      "summaryContent routingContent"
+      "homePageFooter homePageFooter";
+  }
+
+/* ##### END: HomePage CSS ##### */
