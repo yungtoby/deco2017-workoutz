@@ -12,3 +12,7 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+// Had to switch line 5 in package.json from "type": "module" to "type": "commonjs"
+// Stack Overflow: https://stackoverflow.com/questions/69099763/referenceerror-require-is-not-defined-in-es-module-scope-you-can-use-import-in
