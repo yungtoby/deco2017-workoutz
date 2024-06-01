@@ -1,8 +1,23 @@
-# React + Vite
+# WORKOUTZ - Your personal workout assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## DECO2017 ASSIGNMENT - WEB APP PROTOTYPE 
 
-Currently, two official plugins are available:
+In this project I have ...
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+Dependencies:
+> `React.js` - A JS framework for
+> `Vite.js` - A JS framework for 
+> `Express.js`- A JS framework for 
+
+How to run:
+*To run this application you can either:*
+- (a) Open up the `start_application.py` and run the script
+
+- (b) Navigate to the via terminal to the repo directory after cloning and execute the following lines:
+```bash
+npm run build
+npm run start
+```
+
+After one of the two operations are done, open up a webbrowser and go to `http://localhost:3000/`.
