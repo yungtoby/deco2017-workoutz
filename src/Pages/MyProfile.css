@@ -1,18 +1,123 @@
 /* ##### START: HomePage CSS ##### */
 
-/* border: 1px solid white; /* DEBUG */
-
 /* Homepage wrapper wrapping around homepage: */
-.homePage_wrapper {
+.myProfile_wrapper {
     display: grid;
     width: 1000px;
     margin: auto;
   
-    grid-template-columns: 495px 495px; 
+    grid-template-columns: 1000px; 
     grid-template-rows: 100px 490px 60px; 
-    gap: 20px 10px; 
+    gap: 20px 0px; 
     grid-template-areas: 
-      "homePageHeader homePageHeader"
-      "summaryContent routingContent"
-      "homePageFooter homePageFooter";
+      "homePageHeader"
+      "summaryMyProfile"
+      "homePageFooter";
   }
+
+
+/* Header of the my profile page*/
+.homePageHeader {
+    grid-area: homePageHeader;
+    justify-content: center;
+    display: flex;
+}
+.homePageHeader img{
+    object-fit: contain;
+}
+
+
+/* Summary div of the my profile page*/
+.summaryMyProfile {
+    grid-area: summaryMyProfile;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* User basic section of the summary */
+.summaryMyProfileUser, .summaryMyProfileInfo {
+    height: 230px;
+    text-align: center;
+}
+.summaryMyProfileUser {
+    background-color: #666666;
+}
+.summaryMyProfileUser img {
+    height: 100px;
+}
+.summaryMyProfileUser p {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+
+/* User more specific section of the summary */
+.summaryMyProfileInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 230px;
+    text-align: center;
+}
+
+/* Summary general*/
+.summaryGeneral{
+    height: 100%;
+    width: 45%;
+    margin-left: 20px;
+    background-color: #666666;
+    border-radius: 25px;
+    font-size: 20px;
+}
+.summaryGeneral li {
+    margin: 10px 0;
+    font-size: 15px;
+    text-align: start;
+}
+
+/* Buttons in the summary */
+.summaryButtons{
+    height: 100%;
+    width: 45%;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.summaryButtons a{
+    height: 90px;
+    width: 100%;
+}
+.summaryButtons a button {
+    background-color: #666666;
+    color: white;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 90px;
+    width: 100%;
+}
+
+
+/* Footer of the my profile page*/
+.homePageFooter {
+    grid-area: homePageFooter;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.homePageFooter p {
+    font-style: italic;
+    font-size: 12px;
+}
+.footerImgs{
+    display: flex;
+    justify-content: center;
+    gap: 20px;  
+}
+.footerImgs a, .footerImgs img {
+   width: 20px;
+   height: 20px;
+}
