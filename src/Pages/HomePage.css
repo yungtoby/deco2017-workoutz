@@ -2,13 +2,12 @@
 
 /* Homepage wrapper wrapping around homepage: */
 .homePage_wrapper {
-    border: 1px solid white; /* DEBUG */
     display: grid;
     width: 1000px;
     margin: auto;
   
     grid-template-columns: 495px 495px; 
-    grid-template-rows: 100px 530px 20px; 
+    grid-template-rows: 100px 490px 60px; 
     gap: 20px 10px; 
     grid-template-areas: 
       "homePageHeader homePageHeader"
@@ -26,11 +25,55 @@
     object-fit: contain;
 }
 
+
+
 /* Left summary content of HomePage */
 .summaryContent {
     grid-area: summaryContent;
     background-color: #666666;
+    padding: 20px;
 }
+.summaryInfoUser {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.summaryInfoUser img {
+    height: 120px;
+    width: 120px;
+}
+.summaryInfoUser p {
+    font-size: 20px;
+    margin: 0px;
+}
+.summaryRecentWorkouts p {
+    font-size: 20px;
+    margin: 0px;
+}
+.summaryWorkout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    margin: 20px 0;
+    padding: 5px;
+    width: 75%;
+}
+.summaryWorkout img {
+    width: 60px;
+    margin-right: 20px;
+}
+.summaryWorkout a {
+    color: deepskyblue;
+    font-size: 12px;
+}
+.summaryWorkout p {
+    color: black;
+    font-size: 10px;
+}
+
+
+
 
 /* Right routing content of HomePage */
 .routingContent {
@@ -63,6 +106,28 @@
     border-radius: 25px;
     font-size: 20px;
     width: 30%;
+}
+
+/* Footer of the HomePage*/
+.homePageFooter {
+    grid-area: homePageFooter;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.homePageFooter p {
+    font-style: italic;
+    font-size: 12px;
+}
+.footerImgs{
+    display: flex;
+    justify-content: center;
+    gap: 20px;  
+}
+.footerImgs a, .footerImgs img {
+   width: 20px;
+   height: 20px;
 }
 
 
