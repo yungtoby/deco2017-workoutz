@@ -7,7 +7,9 @@ In this project I have ...
 
 Dependencies:
 > `React.js` - A JS framework for
+
 > `Vite.js` - A JS framework for 
+
 > `Express.js`- A JS framework for 
 
 How to run:
