@@ -60,7 +60,7 @@ function HomePage() {
             <RouteButton ButtonName={"New workout"} LinkTo={"/"} />
             <RouteButton ButtonName={"View my progress"} LinkTo={"/"}  />
             <RouteButton ButtonName={"My profile"} LinkTo={"/my_profile"}  />
-            <button id="signoutButton">Sign Out</button>
+            <RouteButton ButtonName={"Signout"} LinkTo={"/"} btn_id={"signoutButton"} />
         </div>
         <GenericFooter />
       </div>
@@ -69,9 +69,9 @@ function HomePage() {
 }
 
 // React function to create and return a link button
-function RouteButton({ ButtonName, LinkTo }) {
+function RouteButton({ ButtonName, LinkTo, btn_id }) {
     return (
-    <Link to={LinkTo}><button>{ButtonName}</button></Link>
+    <Link to={LinkTo}><button id={btn_id}>{ButtonName}</button></Link>
     );
 }
 // React function to create and return a link text

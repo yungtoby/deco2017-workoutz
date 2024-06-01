@@ -82,12 +82,14 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-self: flex-start;
+    justify-content: space-between;
     align-items: center;
 }
-.routingContent a, #signoutButton{
-    margin-top: 50px;
+.routingContent a{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    text-decoration: none;
     height: 70px;
     width: 60%;
 }
@@ -100,12 +102,11 @@
     height: 100%;
     width: 100%;
 }
-#signoutButton {
-    background-color: #666666;
-    color: white;
-    border-radius: 25px;
-    font-size: 20px;
-    width: 30%;
+#signoutButton{
+    height: 50px;
+    width: 50%;
+    margin-top: 0px;
+    margin-bottom: 20px;
 }
 
 /* Footer of the HomePage*/
