@@ -4,15 +4,30 @@
 
 In this project I have ...
 
+&nbsp;
 
-Dependencies:
+&nbsp;
+
+**Dependencies:**
 > `React.js` - A JS framework for
 
 > `Vite.js` - A JS framework for 
 
 > `Express.js`- A JS framework for 
 
-How to run:
+&nbsp;
+
+&nbsp;
+
+**Other information:**
+
+.......
+
+&nbsp;
+
+&nbsp;
+
+**How to run:**
 *To run this application you can either:*
 - (a) Open up the `start_application.py` and run the script
 
