@@ -1,0 +1,104 @@
+/* ##### START: Login page CSS ##### */
+
+/* border: 1px solid white; /* DEBUG */
+
+/* Login page wrapper */
+.login_page_wrapper {
+  display: grid;
+  width: 1000px;
+  margin: auto;
+
+  grid-template-columns: 350px 650px; 
+  grid-template-rows: 50px 550px 50px; 
+  gap: 20px 10px; 
+  grid-template-areas: 
+    "loginHeader loginHeader"
+    "loginInfoContent loginContent"
+    "loginFooter loginFooter";
+}
+
+/* Header of the login page*/
+.loginHeader {
+  grid-area: loginHeader;
+}
+
+/* Left info content of the login page*/
+.loginInfoContent {
+  grid-area: loginInfoContent;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.loginInfoContent img{
+  margin-top: 50px;
+  width: 70%;
+  height: fit-content;
+}
+.loginInfoContentFooter{
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 70px;
+}
+.loginInfoContentFooter a img{
+  width: 20px;
+  margin: 0 20px;
+}
+
+/* Right login content of the login page*/
+.loginContent { 
+  grid-area: loginContent;
+  background-color: #666666;
+  margin: 100px 0;
+  text-align: center;
+}
+.loginContent form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginContentInputDiv {
+  width: 90%;
+}
+.loginContentInputDiv input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 17px;
+  border-bottom: 1px solid white;
+  margin: 10px 0;
+  height: 40px;
+  width: 60%;
+}
+.loginContentInputDiv input::placeholder {
+  color: white;
+}
+.loginContentInputDiv img {
+  width: 20px;
+  margin-right: 20px;
+}
+.loginContentSignup{
+  margin-top: 30px;
+}
+.loginContentSignup img{
+  width: 25px;
+}
+.loginContentSignup p{
+ font-size: 12px;
+}
+#submitLoginButton {
+  width: 80px;
+  height: 40px;
+  border-radius: 25px;
+}
+
+/* Footer of the login page*/
+.loginFooter { 
+  grid-area: loginFooter;
+  text-align: center;
+  font-style: italic;
+  font-size: 10px;
+  margin: 0 200px;
+}
+/* ##### END: Login page CSS ##### */
