@@ -7,13 +7,63 @@
     width: 1000px;
     margin: auto;
   
-    grid-template-columns: 500px 500px; 
-    grid-template-rows: 50px 550px 50px; 
+    grid-template-columns: 495px 495px; 
+    grid-template-rows: 100px 530px 20px; 
     gap: 20px 10px; 
     grid-template-areas: 
       "homePageHeader homePageHeader"
       "summaryContent routingContent"
       "homePageFooter homePageFooter";
   }
+
+/* Header of the HomePage*/
+.homePageHeader {
+    grid-area: homePageHeader;
+    justify-content: center;
+    display: flex;
+}
+.homePageHeader img{
+    object-fit: contain;
+}
+
+/* Left summary content of HomePage */
+.summaryContent {
+    grid-area: summaryContent;
+    background-color: #666666;
+}
+
+/* Right routing content of HomePage */
+.routingContent {
+    grid-area: routingContent;
+    background-color: #333333;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: flex-start;
+    align-items: center;
+}
+.routingContent a, #signoutButton{
+    margin-top: 50px;
+    height: 70px;
+    width: 60%;
+}
+
+.routingContent a button {
+    background-color: #666666;
+    color: white;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 100%;
+    width: 100%;
+}
+#signoutButton {
+    background-color: #666666;
+    color: white;
+    border-radius: 25px;
+    font-size: 20px;
+    width: 30%;
+}
+
 
 /* ##### END: HomePage CSS ##### */
