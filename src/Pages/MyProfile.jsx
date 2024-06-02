@@ -29,7 +29,7 @@ function MyProfile() {
                     </ul>
                 </div>
                 <div className="summaryButtons">
-                    <RouteButton ButtonName={"View my Progress"} LinkTo={"/"} />
+                    <RouteButton ButtonName={"View my Progress"} LinkTo={"/view_my_progress"} />
                     <RouteButton ButtonName={"Go back to main menu"} LinkTo={"/home"} />
                 </div>
             </div>
