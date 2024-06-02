@@ -131,6 +131,10 @@ function NewWorkout() {
                     </div>
                 </div>
             </div>
+            <div className="routingAndSaveButtons">
+                <RouteButton LinkTo={"/home"} ButtonName={"Go back to main menu"} />
+                <button>Save workout</button>
+            </div>
         </div>
 
         <GenericFooter />
