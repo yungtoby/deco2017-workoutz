@@ -1,0 +1,181 @@
+/* ##### START: ViewMyProgress CSS ##### */
+
+/* Wrapper wrapping around ViewMyProgress page: */
+.progress_wrapper {
+    display: grid;
+    width: 1000px;
+    margin: auto;
+  
+    grid-template-columns: 600px 390px; 
+    grid-template-rows: 100px 490px 60px; 
+    gap: 20px 10px; 
+    grid-template-areas: 
+      "homePageHeader homePageHeader"
+      "viewProgressDiv previousWorkoutDiv"
+      "homePageFooter homePageFooter";
+  }
+
+
+/* Header of the my profile page*/
+.homePageHeader {
+    grid-area: homePageHeader;
+    justify-content: center;
+    display: flex;
+}
+.homePageHeader img{
+    object-fit: contain;
+}
+
+
+/* Footer of the my profile page*/
+.homePageFooter {
+    grid-area: homePageFooter;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.homePageFooter p {
+    font-style: italic;
+    font-size: 12px;
+}
+.footerImgs{
+    display: flex;
+    justify-content: center;
+    gap: 20px;  
+}
+.footerImgs a, .footerImgs img {
+   width: 20px;
+   height: 20px;
+}
+
+
+
+/* Div for the Progress info in the ViewMyProgress page */
+.viewProgressDiv, .previousWorkoutDiv {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+}
+.viewProgressDiv h2, .previousWorkoutDiv h2 {
+    margin: 5px 0;
+}
+
+.generalProgress {
+    display: flex;
+    flex-direction: column;
+    background-color: #666666;
+
+    height: 200px;
+    border-radius: 25px;
+} .generalProgress b {
+    font-size: 12px;
+} .generalProgress ul {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+} .generalProgress li {
+    margin: 15px 0;
+    margin-left: 120px;
+    list-style: none;
+    font-size: 12px;
+}
+
+.weightAndCompound {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 200px;
+    border-radius: 25px;
+}
+
+.weight, .compound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #666666;
+
+    width: 270px;
+    height: 200px;
+    border-radius: 25px;
+} .weight p, .compound p{
+    margin: 10px 0;
+}
+.weightGraphAndGoals, .compoundSpecific {
+    display: flex;
+    justify-content: space-between;
+    height: 180px;
+}
+.compoundSpecific {
+    flex-direction: column;
+    margin: 20px 0;
+    font-size: 12px;
+}
+.weightGraphAndGoals {
+    flex-direction: row;
+} .weightGraph, .goals{
+    width: 48%;
+    font-size: 12px;
+} .goals {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+/* Div for the previous workout info*/
+.previousWorkoutDiv a{
+    height: 90px;
+    width: 100%;
+}
+.previousWorkoutDiv a button {
+    background-color: #666666;
+    color: white;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 90px;
+    width: 100%;
+}
+
+.previousWorkoutsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+    overflow-y: auto;
+    height: 330px;
+}
+.previousWorkoutsList::-webkit-scrollbar {
+    width: 2px;
+}
+.previousWorkoutsList::-webkit-scrollbar-track {
+    background: #666666;
+}
+.previousWorkoutsList::-webkit-scrollbar-thumb {
+    background: white;
+}
+
+.summaryWorkout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    margin: 10px 0;
+    padding: 5px;
+    width: 75%;
+}
+.summaryWorkout img {
+    width: 60px;
+    margin-right: 20px;
+}
+.summaryWorkout a {
+    color: deepskyblue;
+    font-size: 12px;
+}
+.summaryWorkout p {
+    color: black;
+    font-size: 10px;
+}
