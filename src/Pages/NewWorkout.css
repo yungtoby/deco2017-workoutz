@@ -1,0 +1,196 @@
+/* ##### START: NewWorkouts CSS ##### */
+
+/* Wrapper wrapping around new workout page: */
+.newWorkout_wrapper {
+    display: grid;
+    width: 1000px;
+    margin: auto;
+  
+    grid-template-columns: 1000px; 
+    grid-template-rows: 100px 490px 60px; 
+    gap: 20px 0px; 
+    grid-template-areas: 
+      "homePageHeader"
+      "newWorkoutDiv"
+      "homePageFooter";
+  }
+
+
+/* Header of the new workout page*/
+.homePageHeader {
+    grid-area: homePageHeader;
+    justify-content: center;
+    display: flex;
+}
+.homePageHeader img{
+    object-fit: contain;
+}
+
+
+/* Footer of the new workout page*/
+.homePageFooter {
+    grid-area: homePageFooter;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.homePageFooter p {
+    font-style: italic;
+    font-size: 12px;
+}
+.footerImgs{
+    display: flex;
+    justify-content: center;
+    gap: 20px;  
+}
+.footerImgs a, .footerImgs img {
+   width: 20px;
+   height: 20px;
+}
+
+
+/* Main div used to create a new workout*/
+.newWorkoutDiv {
+    grid-area: newWorkoutDiv;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* Editor and corresponding divs */
+.exerciseEditor {
+    background-color: #666666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 250px;
+    border-radius: 25px;
+    text-align: center;
+} .exerciseEditor h2 {
+    margin: 10px 0;
+} .exerciseEditor button {
+    background-color: #999999;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 40px;
+    width: 25%;
+} 
+
+.optionsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 130px;
+    width: 90%;
+} 
+
+.options {
+    background-color: #666666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 48%;
+} .options label {
+    font-size: 14px;
+    margin-top: 10px;
+} 
+
+.options_w_pic {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+} .options_w_pic select {
+    margin: 0 30px;
+} .options_w_pic button {
+    font-size: 10px;
+    height: 20px;
+    width: 100px;
+    margin: 0;
+    margin-left: 55px;
+} .options_w_pic img {
+    width: 20px;
+    height: 20px;
+    margin-right: 30px;
+    margin-left: 60px;
+}  .options_w_pic input{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 13px;
+    border-bottom: 1px solid white;
+    height: 20px;
+    width: 60%;
+} .options_w_pic input::placeholder {
+    color: white;
+} #weighin_input {
+    margin-left: 50px;
+    width: 28%;
+}
+
+
+
+.exerciseList {
+    background-color: #666666;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 200px;
+    border-radius: 25px;
+} .exerciseList h2 {
+    margin: 10px 0;
+}
+
+.addedExerciseScroller {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    row-gap: 25px;
+    flex-wrap: wrap; 
+    overflow-y: auto;
+    height: 130px;
+    width: 90%; 
+} .addedExerciseScroller::-webkit-scrollbar {
+    width: 2px;
+} .addedExerciseScroller::-webkit-scrollbar-track {
+    background: #999999;
+} .addedExerciseScroller::-webkit-scrollbar-thumb {
+    background: white;
+}
+
+.exercise {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px; /* Adjust the height as needed */
+    background: linear-gradient(to bottom, transparent 20%, #999999 20%);
+    border-radius: 25px;
+    width: 30%; /* Adjust the width as needed */
+} .exerciseNameAndSets {
+    margin-top: 20px;
+    margin-left: 20px;
+} .exerciseNameAndSets b {
+    font-size: 12px;
+} .exerciseNameAndSets p, .exerciseImgAndPause p {
+    font-size: 10px; 
+    margin: 2px 0;
+} .exerciseImgAndPause {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    margin-right: 20px;
+}.exerciseImgAndPause img {
+    height: 60px;
+    width: 60px;
+}

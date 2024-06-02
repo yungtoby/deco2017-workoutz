@@ -57,7 +57,7 @@ function HomePage() {
 
 
         <div className="routingContent">
-            <RouteButton ButtonName={"New workout"} LinkTo={"/"} />
+            <RouteButton ButtonName={"New workout"} LinkTo={"/new_workout"} />
             <RouteButton ButtonName={"View my progress"} LinkTo={"/view_my_progress"}  />
             <RouteButton ButtonName={"My profile"} LinkTo={"/my_profile"}  />
             <RouteButton ButtonName={"Signout"} LinkTo={"/"} btn_id={"signoutButton"} />

@@ -16,7 +16,7 @@
   }
 
 
-/* Header of the my profile page*/
+/* Header of the view progress page*/
 .homePageHeader {
     grid-area: homePageHeader;
     justify-content: center;
@@ -27,7 +27,7 @@
 }
 
 
-/* Footer of the my profile page*/
+/* Footer of the view progress page*/
 .homePageFooter {
     grid-area: homePageFooter;
     justify-content: center;
