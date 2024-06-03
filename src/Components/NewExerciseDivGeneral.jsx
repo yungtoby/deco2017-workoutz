@@ -8,8 +8,8 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
             <button onClick={toggleAddMuscleGroup}>Add Muscle Group(s)</button>
 
             <div className="newExerciseOptionDiv_one">
-                <input name="setReps" min="0" placeholder="Reps" type="number" />
-                <input name="setWeight" min="0" placeholder="Weight" type="number" />
+                <input name="setPauseMin" min="0" placeholder="Mins" type="number" />
+                <input name="setPauseSec" min="0" max="59" placeholder="Sec" type="number" />
             </div>
             <button>Append to field and click to add pause time</button>
 
