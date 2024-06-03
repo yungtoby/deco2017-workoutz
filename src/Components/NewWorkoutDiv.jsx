@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import name from '../Images/name.png';
@@ -7,9 +7,44 @@ import weighin from '../Images/weighin.png';
 import note from '../Images/note.png';
 import back from '../Images/back.png';
 
+import Workout from '../Classes/Workout.js'
 import '../Pages/NewWorkout.css'
 
 function NewWorkoutDiv({toggleAddExercise}) {
+
+    let currWorkout;
+    if (localStorage.getItem("currWorkout") != null){
+        currWorkout = Workout.fromJsonParserBackToWorkout(JSON.parse(localStorage.getItem("currWorkout")));
+    } else {
+        currWorkout = new Workout();
+    }
+
+
+    function getCurrValuesAndSave() {
+        let wrkName = document.getElementById("wrk_name");
+        let wrkDate = document.getElementById("wrk_date");
+        let wrkWeighIn = document.getElementById("weighin_input");
+        let wrkWeighInType = document.getElementById("weighin_input");
+
+        currWorkout.setName(wrkName.value);
+        currWorkout.setDate(wrkDate.value);
+        currWorkout.setWeighIn(wrkWeighIn.value);
+        currWorkout.setWeighInType(wrkWeighInType.value);
+        
+        localStorage.removeItem("currWorkout");
+        localStorage.setItem("currWorkout", JSON.stringify(currWorkout));
+    }
+
+    function resetCurrWorkout() {
+        localStorage.removeItem("currWorkout")
+        currWorkout = null;
+    }
+
+    function handleNewExerciseClick() {
+        getCurrValuesAndSave()
+        toggleAddExercise()
+    }
+
     return(
         <div className="newWorkoutDiv">
             <div className="exerciseEditor">
@@ -19,21 +54,21 @@ function NewWorkoutDiv({toggleAddExercise}) {
                         <label htmlFor="workoutname">Workout Name</label>
                         <div className="options_w_pic">
                             <img src={name}/>
-                            <input type="text" name="workoutname" placeholder="Insert workout name here ..." />
+                            <Workout_name_input currWorkout={currWorkout}/>
                         </div>
 
                         <label htmlFor="workoutdate">Workout date</label>
                         <div className="options_w_pic">
                             <img src={date}/>
-                            <input type="date" name="workoutdate" />
+                            <Workout_date_input currWorkout={currWorkout} />
                         </div>
                     </div>
                     <div className="options">
                     <label htmlFor="workoutweight">Weigh-in</label>
                         <div className="options_w_pic">
                             <img src={weighin}/>
-                            <input id="weighin_input" type="number" name="workoutweight" placeholder="Insert weight here ..." />
-                            <select>
+                            <input id="weighin_input" type="number" min="0" name="workoutweight" placeholder="Insert weight here ..." />
+                            <select id="weighin_type">
                                 <option value="KG">KG</option>
                                 <option value="LBS">LBS</option>
                             </select>
@@ -46,7 +81,7 @@ function NewWorkoutDiv({toggleAddExercise}) {
                         </div>
                     </div>
                 </div>
-               <button onClick={toggleAddExercise}>Add new exercise</button>
+               <button onClick={handleNewExerciseClick}>Add new exercise</button>
             </div>
 
             <div className="exerciseList">
@@ -127,17 +162,56 @@ function NewWorkoutDiv({toggleAddExercise}) {
                 </div>
             </div>
             <div className="routingAndSaveButtons">
-                <RouteButton LinkTo={"/home"} ButtonName={"Go back to main menu"} />
+                <RouteButton LinkTo={"/home"} ButtonName={"Go back to main menu"} ResetCurr={resetCurrWorkout}/>
                 <button>Save workout</button>
             </div>
         </div>
     )
 }
 
+function Workout_name_input({currWorkout}) {
+    let input;
+    if (currWorkout.getName() == null) {
+        input = <input id="wrk_name" type="text" name="workoutname" placeholder="Insert workout name here ..." />
+    } else {
+        input = <input id="wrk_name" type="text" name="workoutname" defaultValue={currWorkout.workoutName}/>
+    }
+    return input;
+}
+
+function Workout_date_input({currWorkout}) {
+    let input;
+    if (currWorkout.getDate() == null) {
+        input = <input id="wrk_date" type="date" name="workoutdate" />
+    } else {
+        let day = currWorkout.getDate().getDate();
+        if (day < 10){
+            day = `0${day}`
+        }
+        let month = currWorkout.getDate().getMonth() + 1;
+        if (month < 10){
+            month = `0${month}`
+        }
+        let year = currWorkout.getDate().getFullYear();
+        input = <input id="wrk_date" type="date" name="workoutdate" value={`${year}-${month}-${day}`}/>
+    }
+    return input;
+}
+
+function Workout_date_input({currWorkout}) {
+    let input;
+    if (currWorkout.getDate() == null) {
+        input = <input id="weighin_input" type="number" min="0" name="workoutweight" placeholder="Insert weight here ..." />
+    } else {
+        
+    }
+    return input;
+}
+
 // React function to create and return a link button
-function RouteButton({ ButtonName, LinkTo }) {
+function RouteButton({ ButtonName, LinkTo, ResetCurr }) {
     return (
-    <Link to={LinkTo}><button>{ButtonName}</button></Link>
+    <Link to={LinkTo}><button onClick={ResetCurr}>{ButtonName}</button></Link>
     );
 }
 

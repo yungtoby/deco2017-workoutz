@@ -6,15 +6,15 @@ import NewExerciseDivMG from './NewExerciseDivMG';
 import '../Pages/NewWorkout.css'
 
 function NewExerciseDiv({toggleAddExercise}) {
-    const [isShowMainContent, setShowMainContent] = useState(true);
+    const [isGeneralContentContent, setGeneralContentContent] = useState(true);
 
     const toggleAddMuscleGroup = () => {
-        setShowMainContent(!isShowMainContent);
+        setGeneralContentContent(!isGeneralContentContent);
     };
 
     return(
         <div className="newWorkoutDiv">
-            {isShowMainContent ? <NewExerciseDivGeneral toggleAddMuscleGroup={toggleAddMuscleGroup}
+            {isGeneralContentContent ? <NewExerciseDivGeneral toggleAddMuscleGroup={toggleAddMuscleGroup}
             toggleAddExercise={toggleAddExercise}/>
             : <NewExerciseDivMG toggleAddMuscleGroup={toggleAddMuscleGroup} />}
         </div>

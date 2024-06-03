@@ -1,7 +1,7 @@
 /**
  * Class representing a single exercise within a workout.
  */
-class Exercise {
+export default class Exercise {
     /**
      * Constructor for creating an exercise.
      * @param {Array<String>} muscleGroups - Muscle groups utilized
