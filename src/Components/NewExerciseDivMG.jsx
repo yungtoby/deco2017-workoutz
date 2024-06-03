@@ -4,6 +4,8 @@ import Exercise from '../Classes/Exercise.js';
 
 import '../Pages/NewWorkout.css'
 import back_img from '../Images/back.png'
+import chest_img from '../Images/chest.png'
+import legs_img from '../Images/legs.png'
 
 
 function NewExerciseDivMG({toggleAddMuscleGroup}) {
@@ -37,14 +39,14 @@ function NewExerciseDivMG({toggleAddMuscleGroup}) {
             <p>Select ONE muscle groups:</p>
             <div className="muscleGroupSelector">
                 <MuscleItem img_src={back_img}/>
+                <MuscleItem img_src={chest_img}/>
+                <MuscleItem img_src={legs_img}/>
+                <MuscleItem img_src={chest_img}/>
+                <MuscleItem img_src={legs_img}/>
                 <MuscleItem img_src={back_img}/>
+                <MuscleItem img_src={legs_img}/>
                 <MuscleItem img_src={back_img}/>
-                <MuscleItem img_src={back_img}/>
-                <MuscleItem img_src={back_img}/>
-                <MuscleItem img_src={back_img}/>
-                <MuscleItem img_src={back_img}/>
-                <MuscleItem img_src={back_img}/>
-                <MuscleItem img_src={back_img}/>
+                <MuscleItem img_src={chest_img}/>
             </div>
             <button onClick={handleSaveClick}>Save selection</button>
         </div>

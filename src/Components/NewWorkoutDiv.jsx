@@ -11,15 +11,13 @@ import Workout from '../Classes/Workout.js'
 import '../Pages/NewWorkout.css'
 
 function NewWorkoutDiv({toggleAddExercise}) {
-
+    
     let currWorkout;
     if (localStorage.getItem("currWorkout") != null){
         currWorkout = Workout.fromJsonParserBackToWorkout(JSON.parse(localStorage.getItem("currWorkout")));
     } else {
         currWorkout = new Workout();
     }
-
-    console.log(currWorkout)
 
     function getCurrValuesAndSave() {
         let wrkName = document.getElementById("wrk_name");
@@ -42,8 +40,23 @@ function NewWorkoutDiv({toggleAddExercise}) {
     }
 
     function handleNewExerciseClick() {
-        getCurrValuesAndSave()
-        toggleAddExercise()
+        getCurrValuesAndSave();
+        toggleAddExercise();
+    }
+
+    function saveCurrWorkout(){
+        let allWorkouts
+        if (localStorage.getItem("allWorkouts") == null){
+            allWorkouts = [];
+        } else {
+            allWorkouts = JSON.parse(localStorage.getItem("allWorkouts"));
+        }
+        allWorkouts.push(currWorkout);
+        localStorage.setItem("allWorkouts", JSON.stringify(allWorkouts));
+
+        resetCurrWorkout();
+        alert("Workout Saved!");
+        console.log(JSON.parse(localStorage.getItem("allWorkouts")))
     }
 
     return(
@@ -85,83 +98,12 @@ function NewWorkoutDiv({toggleAddExercise}) {
             <div className="exerciseList">
                 <h2>Exercise List:</h2>
                 <div className="addedExerciseScroller">
-                    <div className="exercise">
-                        <div className="exerciseNameAndSets">
-                            <b>Deadlifts</b>
-                            <p>Set 1: 5 reps - 95kg</p>
-                            <p>Set 2: 5 reps - 95kg</p>
-                            <p>Set 3: 5 reps - 95kg</p>
-                        </div>
-                        <div className="exerciseImgAndPause">
-                            <img src={back} />
-                            <p>Pause between set:<br/>2 min 20 sec</p>
-                        </div>
-                    </div>
-                    <div className="exercise">
-                        <div className="exerciseNameAndSets">
-                            <b>Deadlifts</b>
-                            <p>Set 1: 5 reps - 95kg</p>
-                            <p>Set 2: 5 reps - 95kg</p>
-                            <p>Set 3: 5 reps - 95kg</p>
-                        </div>
-                        <div className="exerciseImgAndPause">
-                            <img src={back} />
-                            <p>Pause between set:<br/>2 min 20 sec</p>
-                        </div>
-                    </div>
-                    <div className="exercise">
-                        <div className="exerciseNameAndSets">
-                            <b>Deadlifts</b>
-                            <p>Set 1: 5 reps - 95kg</p>
-                            <p>Set 2: 5 reps - 95kg</p>
-                            <p>Set 3: 5 reps - 95kg</p>
-                        </div>
-                        <div className="exerciseImgAndPause">
-                            <img src={back} />
-                            <p>Pause between set:<br/>2 min 20 sec</p>
-                        </div>
-                    </div>
-                    <div className="exercise">
-                        <div className="exerciseNameAndSets">
-                            <b>Deadlifts</b>
-                            <p>Set 1: 5 reps - 95kg</p>
-                            <p>Set 2: 5 reps - 95kg</p>
-                            <p>Set 3: 5 reps - 95kg</p>
-                        </div>
-                        <div className="exerciseImgAndPause">
-                            <img src={back} />
-                            <p>Pause between set:<br/>2 min 20 sec</p>
-                        </div>
-                    </div>
-                    <div className="exercise">
-                        <div className="exerciseNameAndSets">
-                            <b>Deadlifts</b>
-                            <p>Set 1: 5 reps - 95kg</p>
-                            <p>Set 2: 5 reps - 95kg</p>
-                            <p>Set 3: 5 reps - 95kg</p>
-                        </div>
-                        <div className="exerciseImgAndPause">
-                            <img src={back} />
-                            <p>Pause between set:<br/>2 min 20 sec</p>
-                        </div>
-                    </div>
-                    <div className="exercise">
-                        <div className="exerciseNameAndSets">
-                            <b>Deadlifts</b>
-                            <p>Set 1: 5 reps - 95kg</p>
-                            <p>Set 2: 5 reps - 95kg</p>
-                            <p>Set 3: 5 reps - 95kg</p>
-                        </div>
-                        <div className="exerciseImgAndPause">
-                            <img src={back} />
-                            <p>Pause between set:<br/>2 min 20 sec</p>
-                        </div>
-                    </div>
+                    <ExercisesInList currWorkout={currWorkout}/>
                 </div>
             </div>
             <div className="routingAndSaveButtons">
                 <RouteButton LinkTo={"/home"} ButtonName={"Go back to main menu"} ResetCurr={resetCurrWorkout}/>
-                <button>Save workout</button>
+                <RouteButton LinkTo={"/home"} ButtonName={"Save Workout"} ResetCurr={saveCurrWorkout}/>
             </div>
         </div>
     )
@@ -184,11 +126,11 @@ function WorkoutDateInput({currWorkout}) {
     } else {
         let day = currWorkout.getDate().getDate();
         if (day < 10){
-            day = `0${day}`
+            day = `0${day}`;
         }
         let month = currWorkout.getDate().getMonth() + 1;
         if (month < 10){
-            month = `0${month}`
+            month = `0${month}`;
         }
         let year = currWorkout.getDate().getFullYear();
         input = <input id="wrk_date" type="date" name="workoutdate" value={`${year}-${month}-${day}`}/>
@@ -220,11 +162,84 @@ function WorkoutWeighInTypeInput({currWorkout}) {
     return input;
 }
 
+function ExercisesInList({currWorkout}){
+    if (currWorkout.getExercises() === 0){
+        return;
+    } else {
+        let list_of_exercises = []
+        currWorkout.getExercises().forEach((exercise) => {
+            if (exercise.sets.length === 3 || exercise.sets.length > 3){
+                list_of_exercises.push(
+                    <div className="exercise">
+                        <div className="exerciseNameAndSets">
+                            <b>{exercise.exerciseName}</b>
+                            <p>Set 1: {exercise.sets[0].reps} reps - {exercise.sets[0].weight}{exercise.sets[0].weightType}</p>
+                            <p>Set 2: {exercise.sets[1].reps} reps - {exercise.sets[1].weight}{exercise.sets[1].weightType}</p>
+                            <p>Set 3: {exercise.sets[2].reps} reps - {exercise.sets[2].weight}{exercise.sets[2].weightType}</p>
+                        </div>
+                        <div className="exerciseImgAndPause">
+                            <img src={exercise.muscleGroup} />
+                            <p>Pause between set:<br/>{exercise.pauseTime[0]} min {exercise.pauseTime[1]} sec</p>
+                        </div>
+                    </div>
+                )
+            } else if (exercise.sets.length === 2){
+                list_of_exercises.push(
+                    <div className="exercise">
+                        <div className="exerciseNameAndSets">
+                            <b>{exercise.exerciseName}</b>
+                            <p>Set 1: {exercise.sets[0].reps} reps - {exercise.sets[0].weight}{exercise.sets[0].weightType}</p>
+                            <p>Set 2: {exercise.sets[1].reps} reps - {exercise.sets[1].weight}{exercise.sets[1].weightType}</p>
+                        </div>
+                        <div className="exerciseImgAndPause">
+                            <img src={exercise.muscleGroup} />
+                            <p>Pause between set:<br/>{exercise.pauseTime[0]} min {exercise.pauseTime[1]} sec</p>
+                        </div>
+                    </div>
+                )
+            } else if (exercise.sets.length === 1) {
+                list_of_exercises.push(
+                    <div className="exercise">
+                        <div className="exerciseNameAndSets">
+                            <b>{exercise.exerciseName}</b>
+                            <p>Set 1: {exercise.sets[0].reps} reps - {exercise.sets[0].weight}{exercise.sets[0].weightType}</p>
+                        </div>
+                        <div className="exerciseImgAndPause">
+                            <img src={exercise.muscleGroup} />
+                            <p>Pause between set:<br/>{exercise.pauseTime[0]} min {exercise.pauseTime[1]} sec</p>
+                        </div>
+                    </div>
+                )
+            } else {
+                list_of_exercises.push(
+                    <div className="exercise">
+                        <div className="exerciseNameAndSets">
+                            <b>{exercise.exerciseName}</b>
+                        </div>
+                        <div className="exerciseImgAndPause">
+                            <img src={exercise.muscleGroup} />
+                            <p>Pause between set:<br/>{exercise.pauseTime[0]} min {exercise.pauseTime[1]} sec</p>
+                        </div>
+                    </div>
+                );
+            }
+        })
+    return list_of_exercises};
+}
+
+
 // React function to create and return a link button
 function RouteButton({ ButtonName, LinkTo, ResetCurr }) {
     return (
     <Link to={LinkTo}><button onClick={ResetCurr}>{ButtonName}</button></Link>
     );
 }
+
+
+
+
+
+
+
 
 export default NewWorkoutDiv;

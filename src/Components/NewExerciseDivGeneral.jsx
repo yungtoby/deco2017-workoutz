@@ -47,8 +47,13 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
         localStorage.removeItem("currWorkout")
         localStorage.setItem("currWorkout", JSON.stringify(currWorkout));
 
-        resetCurrExercise()
-        toggleAddExercise()
+        if (currExercise.getName() != null && currExercise.getMuscleGroup() != null && 
+            currExercise.getPauseTime() != null && currExercise.getSets() != null) {
+            resetCurrExercise()
+            toggleAddExercise()
+        } else {
+            alert("You must finish the exercise before saving!")
+        }
     }
 
 
