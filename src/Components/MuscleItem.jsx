@@ -9,7 +9,7 @@ function MuscleItem({img_src}){
     };
 
     return(
-        <div onClick={toggleClassList} className={initClass}><img src={img_src} /></div>
+        <div onClick={toggleClassList} id="muscleItem" className={initClass}><img src={img_src} /></div>
     )
 }
 

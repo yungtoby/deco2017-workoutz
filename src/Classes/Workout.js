@@ -1,3 +1,5 @@
+import Exercise from "./Exercise";
+
 /**
  * Class representing an entire workout
  */
@@ -11,7 +13,7 @@ export default class Workout {
      * @param {String} note - Note added to workout
      * @param {Array<Exercise>} exercises - Exercises performed 
      */
-    constructor(workoutID, workoutName, workoutDate, weighIn, weighInType, note, exercises){
+    constructor(workoutID, workoutName, workoutDate, weighIn, weighInType, note, exercises = []){
         if (workoutID == null){
             this.workoutID = Date.now();
         } else {
@@ -25,6 +27,12 @@ export default class Workout {
         this.exercises = exercises;
     }
 
+    /**
+     * Static parser func for making object out of
+     * newly parsed JSON string.
+     * @param {Parsed JSON obj} json 
+     * @returns 
+     */
     static fromJsonParserBackToWorkout(json){
         return new Workout(
             json.workoutID,
@@ -73,7 +81,7 @@ export default class Workout {
     setNote(setValue){
         this.note = setValue;
     }
-    setExercises(setValue){
-        this.exercises = setValue;
+    appendExercise(setValue){
+        this.exercises.push(setValue);
     }
 }

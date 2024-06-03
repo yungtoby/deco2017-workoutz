@@ -19,6 +19,7 @@ function NewWorkoutDiv({toggleAddExercise}) {
         currWorkout = new Workout();
     }
 
+    console.log(currWorkout)
 
     function getCurrValuesAndSave() {
         let wrkName = document.getElementById("wrk_name");
@@ -54,24 +55,21 @@ function NewWorkoutDiv({toggleAddExercise}) {
                         <label htmlFor="workoutname">Workout Name</label>
                         <div className="options_w_pic">
                             <img src={name}/>
-                            <Workout_name_input currWorkout={currWorkout}/>
+                            <WorkoutNameInput currWorkout={currWorkout}/>
                         </div>
 
                         <label htmlFor="workoutdate">Workout date</label>
                         <div className="options_w_pic">
                             <img src={date}/>
-                            <Workout_date_input currWorkout={currWorkout} />
+                            <WorkoutDateInput currWorkout={currWorkout} />
                         </div>
                     </div>
                     <div className="options">
                     <label htmlFor="workoutweight">Weigh-in</label>
                         <div className="options_w_pic">
                             <img src={weighin}/>
-                            <input id="weighin_input" type="number" min="0" name="workoutweight" placeholder="Insert weight here ..." />
-                            <select id="weighin_type">
-                                <option value="KG">KG</option>
-                                <option value="LBS">LBS</option>
-                            </select>
+                            <WorkoutWeighInInput currWorkout={currWorkout}/>
+                            <WorkoutWeighInTypeInput currWorkout={currWorkout}/>
                         </div>
 
                         <label htmlFor="workoutnote">Add note</label>
@@ -169,7 +167,7 @@ function NewWorkoutDiv({toggleAddExercise}) {
     )
 }
 
-function Workout_name_input({currWorkout}) {
+function WorkoutNameInput({currWorkout}) {
     let input;
     if (currWorkout.getName() == null) {
         input = <input id="wrk_name" type="text" name="workoutname" placeholder="Insert workout name here ..." />
@@ -179,7 +177,7 @@ function Workout_name_input({currWorkout}) {
     return input;
 }
 
-function Workout_date_input({currWorkout}) {
+function WorkoutDateInput({currWorkout}) {
     let input;
     if (currWorkout.getDate() == null) {
         input = <input id="wrk_date" type="date" name="workoutdate" />
@@ -198,12 +196,26 @@ function Workout_date_input({currWorkout}) {
     return input;
 }
 
-function Workout_date_input({currWorkout}) {
+function WorkoutWeighInInput({currWorkout}) {
     let input;
-    if (currWorkout.getDate() == null) {
+    if (currWorkout.getWeighIn() == null) {
         input = <input id="weighin_input" type="number" min="0" name="workoutweight" placeholder="Insert weight here ..." />
     } else {
-        
+        input = <input id="weighin_input" type="number" min="0" name="workoutweight" defaultValue={currWorkout.getWeighIn()}/>
+    }
+    return input;
+}
+
+function WorkoutWeighInTypeInput({currWorkout}) {
+    let input;
+    if (currWorkout.getWeighInType() == null) {
+        input = <select id="weighin_type"><option value="KG">KG</option><option value="LBS">LBS</option></select>
+    } else {
+        if (currWorkout.getWeighInType() == "KG") {
+            input = <select id="weighin_type" ><option value="KG" selected>KG</option><option value="LBS">LBS</option></select>
+        } else {
+            input = <select id="weighin_type" ><option value="KG">KG</option><option value="LBS" selected>LBS</option></select>
+        }
     }
     return input;
 }
