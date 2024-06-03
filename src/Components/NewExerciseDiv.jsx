@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 
 import NewExerciseDivGeneral from './NewExerciseDivGeneral';
+import NewExerciseDivMG from './NewExerciseDivMG';
 import '../Pages/NewWorkout.css'
 
 function NewExerciseDiv({toggleAddExercise}) {
@@ -15,7 +16,7 @@ function NewExerciseDiv({toggleAddExercise}) {
         <div className="newWorkoutDiv">
             {isShowMainContent ? <NewExerciseDivGeneral toggleAddMuscleGroup={toggleAddMuscleGroup}
             toggleAddExercise={toggleAddExercise}/>
-            : <h1>Hello</h1>}
+            : <NewExerciseDivMG toggleAddMuscleGroup={toggleAddMuscleGroup} />}
         </div>
     )
 }

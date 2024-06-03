@@ -292,6 +292,29 @@
     height: 33px;
 } .newExerciseOptionDiv_two input {
     width: 81px;
+} 
+
+/* Add muscle group of add exercise div */
+.muscleGroupSelector {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    column-gap: 30px;
+
+    width: 500px;
+    height: 400px;
+} .muscleItem {
+    height: 120px;
+    width: 120px;
+} .muscleItem img:hover{
+    opacity: 0.5;
+    cursor: pointer;
+} .muscleItem img {
+    height: 100%;
+    width: 100%;
+} .muscleItem.selected {
+    box-shadow: 0 0 30px green;
 }
 
 
