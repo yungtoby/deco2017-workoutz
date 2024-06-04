@@ -40,15 +40,14 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
 
     function handleSaveExerciseClick() {
         getCurrValues()
-        let currWorkout = Workout.fromJsonParserBackToWorkout(JSON.parse(localStorage.getItem("currWorkout")));
-        currWorkout.appendExercise(currExercise)
-
-
-        localStorage.removeItem("currWorkout")
-        localStorage.setItem("currWorkout", JSON.stringify(currWorkout));
-
         if (currExercise.getName() != null && currExercise.getMuscleGroup() != null && 
             currExercise.getPauseTime() != null && currExercise.getSets() != null) {
+            let currWorkout = Workout.fromJsonParserBackToWorkout(JSON.parse(localStorage.getItem("currWorkout")));
+            currWorkout.appendExercise(currExercise)
+        
+            localStorage.removeItem("currWorkout")
+            localStorage.setItem("currWorkout", JSON.stringify(currWorkout));
+
             resetCurrExercise()
             toggleAddExercise()
         } else {
@@ -113,7 +112,7 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
             </div>
 
             <button onClick={handleSaveExerciseClick}>Save Exercise</button>
-            <p id="warning">Field marked with asterisk (*) are required</p>
+            <p id="warning">All fields are required!</p>
         </div>
     )
 }

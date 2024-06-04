@@ -204,14 +204,14 @@
     justify-content: space-between;
 } .routingAndSaveButtons a {
     display: flex;
+    text-align: center;
     text-decoration: none;
     height: 40px;
-    width: 100%;
+    width: 300px;
 }
 .routingAndSaveButtons button {
     background-color: #999999;
     color: white;
-    margin-top: 10px;
     border-radius: 25px;
     font-size: 20px;
     height: 40px;

@@ -11,7 +11,7 @@ import Workout from '../Classes/Workout.js'
 import '../Pages/NewWorkout.css'
 
 function NewWorkoutDiv({toggleAddExercise}) {
-    
+
     let currWorkout;
     if (localStorage.getItem("currWorkout") != null){
         currWorkout = Workout.fromJsonParserBackToWorkout(JSON.parse(localStorage.getItem("currWorkout")));
@@ -45,6 +45,10 @@ function NewWorkoutDiv({toggleAddExercise}) {
     }
 
     function saveCurrWorkout(){
+        if (currWorkout.getExercises().length < 1){
+            alert("You need to at least add 1 exercise\nWorkout was not saved.")
+            return;
+        }
         let allWorkouts
         if (localStorage.getItem("allWorkouts") == null){
             allWorkouts = [];
