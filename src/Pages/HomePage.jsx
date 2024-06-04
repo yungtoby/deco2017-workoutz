@@ -17,6 +17,15 @@ function HomePage() {
         currSavedWorkouts = [];
     }
 
+    function saveSpecific(chosenWorkoutName){
+        currSavedWorkouts.forEach((workout) => {
+            if (workout.workoutName === chosenWorkoutName){
+                localStorage.setItem("chosenWorkout", JSON.stringify(workout))
+                return;
+            }
+        });
+    }
+
     return (
     <>
       <div className="homePage_wrapper">
@@ -29,7 +38,7 @@ function HomePage() {
             </div>
             <div className="summaryRecentWorkouts">
                 <p>Recent workouts:</p>
-                <SummaryWorkouts currSavedWorkouts={currSavedWorkouts} />
+                <SummaryWorkouts currSavedWorkouts={currSavedWorkouts} saveSpecific={saveSpecific}/>
             </div>
         </div>
 
@@ -46,7 +55,7 @@ function HomePage() {
   )
 }
 
-function SummaryWorkouts({currSavedWorkouts}){
+function SummaryWorkouts({currSavedWorkouts, saveSpecific}){
     let returnList = [];
     if (currSavedWorkouts.length < 1){
         return;
@@ -91,7 +100,8 @@ function SummaryWorkouts({currSavedWorkouts}){
             returnList.push(
                 <div className="summaryWorkout">
                     <div>
-                        <RouteText text={`${workoutName} (Date: ${workoutDay}/${workoutMonth}/${workoutYear})`} LinkTo={"/"}  />
+                        <RouteText text={`${workoutName} (Date: ${workoutDay}/${workoutMonth}/${workoutYear})`} LinkTo={"/specific_workout"}
+                        saveSpecific={saveSpecific} arg={workoutName}  />
                         <p>Exercises performed: {exercisesPerf}</p>
                         <p>Reps: {repsPerf}</p>
                     </div>
@@ -114,9 +124,12 @@ function RouteButton({ ButtonName, LinkTo, btn_id }) {
     );
 }
 // React function to create and return a link text
-function RouteText({text, LinkTo }) {
+function RouteText({text, LinkTo, saveSpecific, arg}) {
+    const handleClick = () =>{
+        saveSpecific(arg)
+    }
     return (
-    <Link to={LinkTo}><a>{text}</a></Link>
+    <Link to={LinkTo} onClick={handleClick}><a>{text}</a></Link>
     );
 }
 

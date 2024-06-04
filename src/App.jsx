@@ -5,6 +5,7 @@ import HomePage from './Pages/HomePage';
 import MyProfile from './Pages/MyProfile';
 import ViewMyProgress from './Pages/ViewMyProgress';
 import NewWorkout from './Pages/NewWorkout';
+import SpecificWorkout from './Pages/specificWorkout';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/my_profile" element={<MyProfile />}></Route>
         <Route path="/view_my_progress" element={<ViewMyProgress />}></Route>
         <Route path="/new_workout" element={<NewWorkout />}></Route>
+        <Route path="/specific_workout" element={<SpecificWorkout />}></Route>
       </Routes>
     </>
   )

@@ -1,0 +1,80 @@
+/* ##### START: SpecificWorkout CSS ##### */
+
+/* Wrapper wrapping around new workout page: */
+.specificWorkout_wrapper {
+    display: grid;
+    width: 1000px;
+    margin: auto;
+  
+    grid-template-columns: 1000px; 
+    grid-template-rows: 100px 490px 60px; 
+    gap: 20px 0px; 
+    grid-template-areas: 
+      "homePageHeader"
+      "mainDiv"
+      "homePageFooter";
+  }
+
+
+/* Header of the new workout page*/
+.homePageHeader {
+    grid-area: homePageHeader;
+    justify-content: center;
+    display: flex;
+}
+.homePageHeader img{
+    object-fit: contain;
+}
+
+
+/* Footer of the new workout page*/
+.homePageFooter {
+    grid-area: homePageFooter;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.homePageFooter p {
+    font-style: italic;
+    font-size: 12px;
+}
+.footerImgs{
+    display: flex;
+    justify-content: center;
+    gap: 20px;  
+}
+.footerImgs a, .footerImgs img {
+   width: 20px;
+   height: 20px;
+}
+
+.mainDiv {
+    grid-area: mainDiv;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+} .mainDiv a{
+    display: flex;
+    align-self: center;
+    margin-top: 20px;
+    justify-content: center;
+    text-decoration: none;
+    height: 50px;
+    width: 20%;
+} .mainDiv a button {
+    background-color: #666666;
+    color: white;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 100%;
+    width: 100%;
+} .mainDiv h1 {
+    text-decoration: underline;
+    margin: 5px 0;
+} .mainDivPartOne p {
+    margin: 10px 0;
+} .mainDivPartOne {
+    margin-bottom: 25px;
+}
