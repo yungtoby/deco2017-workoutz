@@ -30,13 +30,13 @@ The Workoutz SPA has a wide variety of features meant to help the user on its fi
 ## Setup:
 **Dependencies:**
 
-The application has several dependencies which it has utilized to work. The following list provides an overlook of them:
+The application has several dependencies which it has utilized to work. These dependencies need to be downloaded before runnng the program. The following list provides an overlook of them:
 
-> `React.js` - **Very minor explanation**
+> `React.js` - A JS library for developing web applications created by Meta.
 
-> `Vite.js` - **Very minor explanation** 
+> `Vite.js` - A local dev server tool for setting up enviorment for react.
 
-> `Express.js`- Minimal and fast webserver?? 
+> `Express.js`- Node.js based minimalistic and fast webserver framework. 
 
 &nbsp;
 
@@ -100,7 +100,7 @@ Version number found [here](https://help.openai.com/en/articles/6825453-chatgpt-
 ChatGPT was used for initiating the project, aka. laying down the base for me to start building on top of. After this initial stage it was merely used for small syntax based questions in JS like for example:
 - How do I cast from Str to Int in a quick manner?
 - Why cant I pass args to funcs the funcs I pass to `onClick` and is there a workaround?
-- ?????   
+- and alike.
 
 The initial prompt for generating the "layout" for the project was the following:
-- ???????
+- Make me a shell for an SPA project utilizing vite and react. Also include express for a minimal webserver.
