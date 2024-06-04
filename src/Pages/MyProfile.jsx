@@ -6,6 +6,13 @@ import user from '../Images/user_placeholder.png'
 import './MyProfile.css'
 
 function MyProfile() {
+  let currSavedWorkouts;
+    if (localStorage.getItem("allWorkouts") != null){
+        currSavedWorkouts = JSON.parse(localStorage.getItem("allWorkouts"));
+    } else {
+        currSavedWorkouts = [];
+    }
+
   return (
     <>
       <div className="myProfile_wrapper">
@@ -25,7 +32,7 @@ function MyProfile() {
                         <li>D.O.B: 14/04/2000</li>
                         <li>Gender: Male</li>
                         <li>Current Weight: 81kg</li>
-                        <li>Workouts tracked: 9</li>
+                        <WorkoutsTracked currSavedWorkouts={currSavedWorkouts}/>
                     </ul>
                 </div>
                 <div className="summaryButtons">
@@ -38,6 +45,12 @@ function MyProfile() {
         <GenericFooter />
       </div>
     </>
+  )
+}
+
+function WorkoutsTracked({currSavedWorkouts}){
+  return(
+    <li>Workouts tracked: {currSavedWorkouts.length}</li>
   )
 }
 

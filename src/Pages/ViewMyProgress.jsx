@@ -157,7 +157,7 @@ function SummaryWorkouts({currSavedWorkouts}){
             let workoutName = workout.workoutName;
             let workoutDay = dateOfWorkout.getDate();
             let workoutMonth = dateOfWorkout.getMonth()+1;
-            let workoutYear = dateOfWorkout.getYear();
+            let workoutYear = dateOfWorkout.getFullYear();
             let exercisesPerf = workout.exercises.length;
             let repsPerf = 0;
             let mostUsedMuscleGroup = [0, 0, 0];
@@ -200,7 +200,7 @@ function SummaryWorkouts({currSavedWorkouts}){
                 </div>
             )
         });
-        return returnList;
+        return returnList.reverse();
     }
 }
 

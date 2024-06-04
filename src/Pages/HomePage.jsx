@@ -10,7 +10,14 @@ import legs_placeholder from '../Images/legs.png'
 import './HomePage.css'
 
 function HomePage() {
-  return (
+    let currSavedWorkouts;
+    if (localStorage.getItem("allWorkouts") != null){
+        currSavedWorkouts = JSON.parse(localStorage.getItem("allWorkouts"));
+    } else {
+        currSavedWorkouts = [];
+    }
+
+    return (
     <>
       <div className="homePage_wrapper">
         <GenericHeader />
@@ -22,36 +29,7 @@ function HomePage() {
             </div>
             <div className="summaryRecentWorkouts">
                 <p>Recent workouts:</p>
-                <div className="summaryWorkout">
-                    <div>
-                        <RouteText text={"Chest Workout (Date: 14/04/2024)"} LinkTo={"/"}  />
-                        <p>Exercises performed: ?</p>
-                        <p>Reps: ?</p>
-                    </div>
-                    <div>
-                        <img src={chest_placeholder} />
-                    </div>
-                </div>
-                <div className="summaryWorkout">
-                    <div>
-                        <RouteText text={"Back Workout (Date: 13/04/2024)"} LinkTo={"/"}  />
-                        <p>Exercises performed: ?</p>
-                        <p>Reps: ?</p>
-                    </div>
-                    <div>
-                        <img src={back_placeholder} />
-                    </div>
-                </div>
-                <div className="summaryWorkout">
-                    <div>
-                        <RouteText text={"Leg Workout (Date: 12/04/2024)"} LinkTo={"/"}  />
-                        <p>Exercises performed: ?</p>
-                        <p>Reps: ?</p>
-                    </div>
-                    <div>
-                        <img src={legs_placeholder} />
-                    </div>
-                </div>
+                <SummaryWorkouts currSavedWorkouts={currSavedWorkouts} />
             </div>
         </div>
 
@@ -66,6 +44,67 @@ function HomePage() {
       </div>
     </>
   )
+}
+
+function SummaryWorkouts({currSavedWorkouts}){
+    let returnList = [];
+    if (currSavedWorkouts.length < 1){
+        return;
+    } else {
+        let counter = 0;
+        currSavedWorkouts.forEach((workout) => {
+            if (counter !== 3){
+            let dateOfWorkout = new Date(workout.workoutDate);
+            let workoutName = workout.workoutName;
+            let workoutDay = dateOfWorkout.getDate();
+            let workoutMonth = dateOfWorkout.getMonth()+1;
+            let workoutYear = dateOfWorkout.getFullYear();
+            let exercisesPerf = workout.exercises.length;
+            let repsPerf = 0;
+            let mostUsedMuscleGroup = [0, 0, 0];
+
+            (workout.exercises).forEach((exercise) => {
+                if (exercise.muscleGroup.includes("back")) {
+                    mostUsedMuscleGroup[0]++;
+                } else if (exercise.muscleGroup.includes("legs")) {
+                    mostUsedMuscleGroup[1]++;
+                } else {
+                    mostUsedMuscleGroup[2]++;
+                }
+                (exercise.sets).forEach((set) => {
+                    repsPerf += +set.reps;
+                })
+            })
+
+            let mostUsed = Math.max(...mostUsedMuscleGroup);
+            let indexOfMostUsed = mostUsedMuscleGroup.indexOf(mostUsed);
+            let muscleSource;
+
+            if (indexOfMostUsed === 0){
+                muscleSource = back_placeholder;
+            } else if (indexOfMostUsed === 1){
+                muscleSource = legs_placeholder;
+            } else {
+                muscleSource = chest_placeholder;
+            }
+
+            returnList.push(
+                <div className="summaryWorkout">
+                    <div>
+                        <RouteText text={`${workoutName} (Date: ${workoutDay}/${workoutMonth}/${workoutYear})`} LinkTo={"/"}  />
+                        <p>Exercises performed: {exercisesPerf}</p>
+                        <p>Reps: {repsPerf}</p>
+                    </div>
+                    <div>
+                        <img src={muscleSource} />
+                    </div>
+                </div>
+            )
+            counter++;
+            }});
+
+        return returnList.reverse();
+    }
 }
 
 // React function to create and return a link button
