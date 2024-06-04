@@ -15,15 +15,15 @@ For version control this Project utilizes GitHub to track the current version an
 ## Features:
 The Workoutz SPA has a wide variety of features meant to help the user on its fitness journey. Some of the features include (but not restricted to):
 
--- **Compound lifts:** The application calculates your compound lifts from your previous lifts.
+- **Compound lifts:** The application calculates your compound lifts from your previous lifts.
 
--- **Proposed next workout:** The application gives you recommendation on next workout based on previous workouts.
+- **Proposed next workout:** The application gives you recommendation on next workout based on previous workouts.
 
--- **Viewing specific exercises:** Via the application you can go and watch your previous workouts.
+- **Viewing specific exercises:** Via the application you can go and watch your previous workouts.
 
--- **Averages:** The application calculates averages of your workouts.
+- **Averages:** The application calculates averages of your workouts.
 
--- And more...
+- And more...
 
 &nbsp;
 
