@@ -61,7 +61,7 @@ function SummaryWorkouts({currSavedWorkouts, saveSpecific}){
         return;
     } else {
         let counter = 0;
-        currSavedWorkouts.forEach((workout) => {
+        currSavedWorkouts.reverse().forEach((workout) => {
             if (counter !== 3){
             let dateOfWorkout = new Date(workout.workoutDate);
             let workoutName = workout.workoutName;
@@ -113,7 +113,7 @@ function SummaryWorkouts({currSavedWorkouts, saveSpecific}){
             counter++;
             }});
 
-        return returnList.reverse();
+        return returnList;
     }
 }
 

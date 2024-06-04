@@ -24,11 +24,16 @@ function NewWorkoutDiv({toggleAddExercise}) {
         let wrkDate = document.getElementById("wrk_date");
         let wrkWeighIn = document.getElementById("weighin_input");
         let wrkWeighInType = document.getElementById("weighin_input");
-
-        currWorkout.setName(wrkName.value);
-        currWorkout.setDate(wrkDate.value);
-        currWorkout.setWeighIn(wrkWeighIn.value);
-        currWorkout.setWeighInType(wrkWeighInType.value);
+        
+        if (wrkName.value != ""){
+            currWorkout.setName(wrkName.value);
+        } if (wrkDate.value != ""){
+            currWorkout.setDate(wrkDate.value);
+        } if (wrkWeighIn.value != ""){
+            currWorkout.setWeighIn(wrkWeighIn.value);
+        } if (wrkWeighInType.value !=""){
+            currWorkout.setWeighInType(wrkWeighInType.value);
+        }
         
         localStorage.removeItem("currWorkout");
         localStorage.setItem("currWorkout", JSON.stringify(currWorkout));
@@ -46,7 +51,17 @@ function NewWorkoutDiv({toggleAddExercise}) {
 
     function saveCurrWorkout(){
         if (currWorkout.getExercises().length < 1){
-            alert("You need to at least add 1 exercise\nWorkout was not saved.")
+            resetCurrWorkout();
+            alert("You need to at least add 1 exercise\nWorkout was not saved.");
+            return;
+        } else if (currWorkout.getName() == "" || currWorkout.getWeighInType() == "" ||
+                   currWorkout.getWeighInType() == ""){
+            resetCurrWorkout();
+            alert("You need to add name, weighIn, weighInType and Date!\nWorkout was not saved.");
+            return;
+        } else if (currWorkout.getDate().getFullYear() == 1970){
+            resetCurrWorkout();
+            alert("You need to add name, weighIn, weighInType and Date!\nWorkout was not saved.");
             return;
         }
         let allWorkouts
@@ -60,7 +75,6 @@ function NewWorkoutDiv({toggleAddExercise}) {
 
         resetCurrWorkout();
         alert("Workout Saved!");
-        console.log(JSON.parse(localStorage.getItem("allWorkouts")))
     }
 
     return(
@@ -125,7 +139,8 @@ function WorkoutNameInput({currWorkout}) {
 
 function WorkoutDateInput({currWorkout}) {
     let input;
-    if (currWorkout.getDate() == null) {
+
+    if (currWorkout.getDate() == null || currWorkout.getDate() == "") {
         input = <input id="wrk_date" type="date" name="workoutdate" />
     } else {
         let day = currWorkout.getDate().getDate();
@@ -137,7 +152,12 @@ function WorkoutDateInput({currWorkout}) {
             month = `0${month}`;
         }
         let year = currWorkout.getDate().getFullYear();
-        input = <input id="wrk_date" type="date" name="workoutdate" value={`${year}-${month}-${day}`}/>
+
+        if (year === 1970 && month === "01" && day == "01"){
+            input = <input id="wrk_date" type="date" name="workoutdate" />
+        } else {
+            input = <input id="wrk_date" type="date" name="workoutdate" value={`${year}-${month}-${day}`}/>
+        }
     }
     return input;
 }

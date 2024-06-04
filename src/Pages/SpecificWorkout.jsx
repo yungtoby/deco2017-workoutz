@@ -16,7 +16,7 @@ function SpecificWorkout() {
         <GenericHeader />
         
         <div className="mainDiv">
-            <h1>My workout nr 1</h1>
+            <WorkoutName chosenWorkout={chosenWorkout} />
             <div className="mainDivPartOne">
                 <p><b>Date:</b> 19/04/2024</p>
                 <p><b>Weigh In:</b> 85 KG</p>
@@ -37,6 +37,23 @@ function SpecificWorkout() {
       </div>
     </>
   )
+}
+
+function WorkoutName({chosenWorkout}){
+    return(
+        <h1>{chosenWorkout.getName()}</h1>
+    )
+}
+
+function WorkoutGeneralInfo({chosenWorkout}){
+    let generalInfo = []
+
+
+    generalInfo.push(<p><b>Date:</b> {}/{}/{}</p>);
+    generalInfo.push(<p><b>Weigh In:</b> 85 KG</p>);
+    generalInfo.push(<p><b>Main muscle group utilised:</b> Back</p>);
+
+    return generalInfo;
 }
 
 
