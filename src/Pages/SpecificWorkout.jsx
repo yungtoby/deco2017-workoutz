@@ -18,9 +18,7 @@ function SpecificWorkout() {
         <div className="mainDiv">
             <WorkoutName chosenWorkout={chosenWorkout} />
             <div className="mainDivPartOne">
-                <p><b>Date:</b> 19/04/2024</p>
-                <p><b>Weigh In:</b> 85 KG</p>
-                <p><b>Main muscle group utilised:</b> Back</p>
+                <WorkoutGeneralInfo chosenWorkout={chosenWorkout}/>
             </div>
 
             <div className="exerciseList">
@@ -48,10 +46,41 @@ function WorkoutName({chosenWorkout}){
 function WorkoutGeneralInfo({chosenWorkout}){
     let generalInfo = []
 
+    let day = chosenWorkout.getDate().getDate();
+    if (day < 10){
+        day = `0${day}`;
+    }
+    let month = chosenWorkout.getDate().getMonth() + 1;
+    if (month < 10){
+        month = `0${month}`;
+    }
+    let year = chosenWorkout.getDate().getFullYear();
+    
+    let mostUsedMuscleGroup = [0, 0, 0];
+    (chosenWorkout.getExercises()).forEach((exercise) => {
+        if (exercise.muscleGroup.includes("back")) {
+            mostUsedMuscleGroup[0]++;
+        } else if (exercise.muscleGroup.includes("legs")) {
+            mostUsedMuscleGroup[1]++;
+        } else {
+            mostUsedMuscleGroup[2]++;
+        }})
 
-    generalInfo.push(<p><b>Date:</b> {}/{}/{}</p>);
-    generalInfo.push(<p><b>Weigh In:</b> 85 KG</p>);
-    generalInfo.push(<p><b>Main muscle group utilised:</b> Back</p>);
+    let mostUsed = Math.max(...mostUsedMuscleGroup);
+    let indexOfMostUsed = mostUsedMuscleGroup.indexOf(mostUsed);
+    let muscleSource;
+
+    if (indexOfMostUsed === 0){
+        muscleSource = "Back";
+    } else if (indexOfMostUsed === 1){
+        muscleSource = "Legs";
+    } else {
+        muscleSource = "Chest";
+    }
+
+    generalInfo.push(<p><b>Date:</b> {day}/{month}/{year}</p>);
+    generalInfo.push(<p><b>Weigh In:</b> {chosenWorkout.getWeighIn()} {chosenWorkout.getWeighInType()}</p>);
+    generalInfo.push(<p><b>Main muscle group utilised:</b> {muscleSource}</p>);
 
     return generalInfo;
 }

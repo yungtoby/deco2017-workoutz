@@ -23,7 +23,7 @@ function NewWorkoutDiv({toggleAddExercise}) {
         let wrkName = document.getElementById("wrk_name");
         let wrkDate = document.getElementById("wrk_date");
         let wrkWeighIn = document.getElementById("weighin_input");
-        let wrkWeighInType = document.getElementById("weighin_input");
+        let wrkWeighInType = document.getElementById("weighin_type");
         
         if (wrkName.value != ""){
             currWorkout.setName(wrkName.value);
