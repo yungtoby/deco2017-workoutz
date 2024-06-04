@@ -40,7 +40,7 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
 
     function handleSaveExerciseClick() {
         getCurrValues()
-        if (currExercise.getName() != null && currExercise.getMuscleGroup() != null && 
+        if (currExercise.getName() != null && currExercise.getName() != "" && currExercise.getMuscleGroup() != null && 
             currExercise.getPauseTime() != null && currExercise.getSets() != null) {
             let currWorkout = Workout.fromJsonParserBackToWorkout(JSON.parse(localStorage.getItem("currWorkout")));
             currWorkout.appendExercise(currExercise)
@@ -67,11 +67,7 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
         localStorage.removeItem("currExercise");
         localStorage.setItem("currExercise", JSON.stringify(currExercise));
 
-        setReps.value="";
-        setWeight.value="";
-        setWeightType.value="";
         forceUpdate()
-        alert("Set added!")
     }
 
 
@@ -119,7 +115,7 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
 
 function ExerciseName({currExercise}){
     let input;
-    if (currExercise.getName() != null){
+    if (currExercise.getName() != null && currExercise.getName() != ""){
        input = <input id="ex_name" type="text" name="" defaultValue={currExercise.getName()} />
     } else {
        input = <input id="ex_name" type="text" name="" placeholder="... Exercise name ..." />
