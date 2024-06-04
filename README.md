@@ -67,6 +67,7 @@ During the course of developing the application there has been some minor change
 
 - _Add Pause Time / Set Button:_ The add set button was deprecated and switched to input fields which yielded faster writing and appending for better user experience.
 - _Add Note:_ The add note button when creating a workout was not implemented because of time constraints.
+- _Mobile view:_ Because of time conrstraints and heavy workload in other courses I did not have enough time to look at the mobile view of the application.
 
 &nbsp;
 
