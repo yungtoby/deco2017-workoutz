@@ -5,7 +5,12 @@ import GenericHeader from '../Components/GenericHeader';
 import user from '../Images/user_placeholder.png'
 import './MyProfile.css'
 
+/**
+ * A function returning the users profile page of the application
+ * @returns MyProfile JSX page
+ */
 function MyProfile() {
+  // If saved workouts exists: retrieve, else have empty list.
   let currSavedWorkouts;
     if (localStorage.getItem("allWorkouts") != null){
         currSavedWorkouts = JSON.parse(localStorage.getItem("allWorkouts"));
@@ -48,6 +53,11 @@ function MyProfile() {
   )
 }
 
+/**
+ * Functions for returning the number of workouts tracked list object.
+ * @param {Array<Workout>} currSavedWorkouts - List of all saved workouts
+ * @returns WorkoutsTracked JSX Component
+ */
 function WorkoutsTracked({currSavedWorkouts}){
   return(
     <li>Workouts tracked: {currSavedWorkouts.length}</li>

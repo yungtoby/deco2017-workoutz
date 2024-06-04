@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import name from '../Images/name.png';
 import date from '../Images/date.png';
 import weighin from '../Images/weighin.png';
 import note from '../Images/note.png';
-import back from '../Images/back.png';
 
 import Workout from '../Classes/Workout.js'
 import '../Pages/NewWorkout.css'
 
+/**
+ * The Main view of the workout editor utilized by NewWorkout.jsx
+ * @param {Function} toggleAddExercise Function for toggling between exercise and workout editor 
+ * @returns NewWorkoutDiv JSX component
+ */
 function NewWorkoutDiv({toggleAddExercise}) {
 
+    // If current workout exists retrieve, else create:
     let currWorkout;
     if (localStorage.getItem("currWorkout") != null){
         currWorkout = Workout.fromJsonParserBackToWorkout(JSON.parse(localStorage.getItem("currWorkout")));
@@ -19,6 +24,10 @@ function NewWorkoutDiv({toggleAddExercise}) {
         currWorkout = new Workout();
     }
 
+    /**
+     * Function for retrieving current values and saving.
+     * often utilized when switching views.
+     */
     function getCurrValuesAndSave() {
         let wrkName = document.getElementById("wrk_name");
         let wrkDate = document.getElementById("wrk_date");
@@ -39,16 +48,28 @@ function NewWorkoutDiv({toggleAddExercise}) {
         localStorage.setItem("currWorkout", JSON.stringify(currWorkout));
     }
 
+    /**
+     * Resets the current workout in the workout editor.
+     */
     function resetCurrWorkout() {
         localStorage.removeItem("currWorkout")
         currWorkout = null;
     }
 
+    /**
+     * Handles the new exercise click via saving the values of the
+     * workout and toggling the views.
+     */
     function handleNewExerciseClick() {
         getCurrValuesAndSave();
         toggleAddExercise();
     }
 
+    /**
+     * Saves the current workout if it confines to set of rules.
+     * @returns if the rules where not followed, i.e., the user
+     *          did not append to all areas.
+     */
     function saveCurrWorkout(){
         if (currWorkout.getExercises().length < 1){
             resetCurrWorkout();
@@ -127,6 +148,12 @@ function NewWorkoutDiv({toggleAddExercise}) {
     )
 }
 
+/**
+ * Function for creating Name input with already put in values
+ * if user switches views.
+ * @param {Workout} currWorkout - The current workout.
+ * @returns WorkoutNameInput JSX component
+ */
 function WorkoutNameInput({currWorkout}) {
     let input;
     if (currWorkout.getName() == null) {
@@ -137,6 +164,12 @@ function WorkoutNameInput({currWorkout}) {
     return input;
 }
 
+/**
+ * Function for creating Date input with already put in values
+ * if user switches views.
+ * @param {Workout} currWorkout - The current workout.
+ * @returns WorkoutDateInput JSX component
+ */
 function WorkoutDateInput({currWorkout}) {
     let input;
 
@@ -162,6 +195,12 @@ function WorkoutDateInput({currWorkout}) {
     return input;
 }
 
+/**
+ * Function for creating WeighIn input with already put in values
+ * if user switches views.
+ * @param {Workout} currWorkout - The current workout.
+ * @returns WorkoutWeighInInput JSX component
+ */
 function WorkoutWeighInInput({currWorkout}) {
     let input;
     if (currWorkout.getWeighIn() == null) {
@@ -172,6 +211,12 @@ function WorkoutWeighInInput({currWorkout}) {
     return input;
 }
 
+/**
+ * Function for creating WeighInType input with already put in values
+ * if user switches views.
+ * @param {Workout} currWorkout - The current workout.
+ * @returns WorkoutWeighInTypeInput JSX component
+ */
 function WorkoutWeighInTypeInput({currWorkout}) {
     let input;
     if (currWorkout.getWeighInType() == null) {
@@ -186,6 +231,12 @@ function WorkoutWeighInTypeInput({currWorkout}) {
     return input;
 }
 
+/**
+ * Function for creating the exercise list with already put in values
+ * if user switches views.
+ * @param {Workout} currWorkout - The current workout.
+ * @returns ExercisesInList JSX component
+ */
 function ExercisesInList({currWorkout}){
     if (currWorkout.getExercises() === 0){
         return;
@@ -258,12 +309,5 @@ function RouteButton({ ButtonName, LinkTo, ResetCurr }) {
     <Link to={LinkTo}><button onClick={ResetCurr}>{ButtonName}</button></Link>
     );
 }
-
-
-
-
-
-
-
 
 export default NewWorkoutDiv;

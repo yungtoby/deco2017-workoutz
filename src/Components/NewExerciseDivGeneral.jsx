@@ -5,12 +5,19 @@ import Workout from '../Classes/Workout.js';
 import Exercise from '../Classes/Exercise.js';
 import Excs_Set from '../Classes/Excs_Set.js';
 
-
+/**
+ * The main div utilized by MainExerciseDiv.jsx for displaying the main content
+ * of the Exercise editor.
+ * @param {function} toggleAddMuscleGroup - Function for toggling muscle group adding view
+ * @param {functio } toggleAddExercise - Function for toggling exercise editor view
+ * @returns The general view of the exercise editor JSX component.
+ */
 function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
     /* Fix for rerender of specific component */
     const [, updateState] = React.useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
 
+    // If current exercise already exists: retrieve, else: make new.
     let currExercise;
     if (localStorage.getItem("currExercise") != null){
         currExercise = Exercise.fromJsonParserBackToExercise(JSON.parse(localStorage.getItem("currExercise")));
@@ -18,7 +25,10 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
         currExercise = new Exercise();
     }
 
-
+    /**
+     * Function for getting the current values and saving.
+     * Used when switching views for keeping state intact.
+     */
     function getCurrValues() {
         let exName = document.getElementById("ex_name");
         let exPauseMin = document.getElementById("ex_pause_min");
@@ -31,13 +41,19 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
         localStorage.setItem("currExercise", JSON.stringify(currExercise));
     }
 
-
+    /**
+     * Reset the current exercise utilized
+     * by the exercise editor.
+     */
     function resetCurrExercise() {
         localStorage.removeItem("currExercise")
         currExercise = null;
     }
 
-
+    /**
+     * Save the current exercise when function is called
+     * and toggle the view back to the Workout editor.
+     */
     function handleSaveExerciseClick() {
         getCurrValues()
         if (currExercise.getName() != null && currExercise.getName() != "" && currExercise.getMuscleGroup() != null && 
@@ -55,7 +71,9 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
         }
     }
 
-
+    /**
+     * Handling the set saving of the exercise editor.
+     */
     function handleSaveSetClick(){
         let setReps = document.getElementById("set_reps");
         let setWeight = document.getElementById("set_weight");
@@ -70,7 +88,11 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
         forceUpdate()
     }
 
-
+    /**
+     * Saves curr calues and switches the view to the
+     * muscle group view of the exercise editor
+     * via @function toggleAddMuscleGroup()
+     */
     function addMuscleGroupClick(){
         getCurrValues()
         toggleAddMuscleGroup()
@@ -113,6 +135,13 @@ function NewExerciseDivGeneral({toggleAddMuscleGroup, toggleAddExercise}) {
     )
 }
 
+/**
+ * Generates the current name of the exercise chosen by the user
+ * if a name is chosen. Keeps this when user switches views in
+ * exercise editor.
+ * @param {Exercise} currExercise - The current exercise 
+ * @returns ExerciseName JSX
+ */
 function ExerciseName({currExercise}){
     let input;
     if (currExercise.getName() != null && currExercise.getName() != ""){
@@ -122,6 +151,13 @@ function ExerciseName({currExercise}){
     }
     return input;
 }
+
+/**
+ * Generates the current set minutes of the exercise, chosen by the user
+ * if it is chosen. Keeps this when user switches views in exercise editor.
+ * @param {Exercise} currExercise - The current exercise 
+ * @returns ExerciseMin JSX
+ */
 function ExerciseMin({currExercise}){
     let input;
     if (currExercise.getPauseTime() == null){
@@ -131,6 +167,13 @@ function ExerciseMin({currExercise}){
     }
     return input;
 }
+
+/**
+ * Generates the current set seconds of the exercise, chosen by the user
+ * if it is chosen. Keeps this when user switches views in exercise editor.
+ * @param {Exercise} currExercise - The current exercise 
+ * @returns ExerciseSec JSX
+ */
 function ExerciseSec({currExercise}){
     let input;
     if (currExercise.getPauseTime() == null){
@@ -140,6 +183,14 @@ function ExerciseSec({currExercise}){
     }
     return input;
 }
+
+/**
+ * Generates the current setlist of the exercise created by the user
+ * if it is already created. Keeps this when user switches views in
+ * exercise editor.
+ * @param {Exercise} currExercise - The current exercise 
+ * @returns ExerciseSetList JSX
+ */
 function ExerciseSetList({currExercise}){
     if (currExercise.getSets() == null) {
         return <p></p>

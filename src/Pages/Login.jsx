@@ -9,6 +9,10 @@ import pass_login_pic from '../Images/pass_login.png'
 import signup_pic from '../Images/signup.png'
 import './Login.css'
 
+/**
+ *  A function returning the Login page of the application
+ * @returns Login JSX page
+ */
 function Login() {
   return (
     <>

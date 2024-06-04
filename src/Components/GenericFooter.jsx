@@ -3,6 +3,10 @@ import insta_logo from '../Images/insta.png'
 import twitter_logo from '../Images/twitter.png'
 import face_logo from '../Images/face.png'
 
+/**
+ * Component function returning a generic footer
+ * @returns Generic Footer JSX component
+ */
 function GenericFooter() {
     return(
         <div className="homePageFooter">

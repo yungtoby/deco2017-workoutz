@@ -7,10 +7,21 @@ import back_img from '../Images/back.png'
 import chest_img from '../Images/chest.png'
 import legs_img from '../Images/legs.png'
 
-
+/**
+ * Class representing the musclegroup view of the exercise edtior.
+ * @param {Function} toggleAddMuscleGroup - Function for toggling between musclegroup
+ *                                          view of the exercise editor. 
+ * @returns NewExerciseDivMG JSX component
+ */
 function NewExerciseDivMG({toggleAddMuscleGroup}) {
+    //Get the current exercise:
     let currExercise = Exercise.fromJsonParserBackToExercise(JSON.parse(localStorage.getItem("currExercise")));
 
+    /**
+     * Function for handling save click done by the user.
+     * @returns If user has not chosen any muscle groups or
+     *          more than one
+     */
     function handleSaveClick(){
         let muscleItems = document.querySelectorAll("#muscleItem");
         let selected = [];

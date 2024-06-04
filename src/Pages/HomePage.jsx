@@ -9,7 +9,12 @@ import legs_placeholder from '../Images/legs.png'
 
 import './HomePage.css'
 
+/**
+ * A function returning the Home Page of the application
+ * @returns HomePage JSX page.
+ */
 function HomePage() {
+    // If saved workouts exist: retrieve, else create blank list.
     let currSavedWorkouts;
     if (localStorage.getItem("allWorkouts") != null){
         currSavedWorkouts = JSON.parse(localStorage.getItem("allWorkouts"));
@@ -17,6 +22,11 @@ function HomePage() {
         currSavedWorkouts = [];
     }
 
+    /**
+     * Saves the specific workout chosen for viewing by the user for 
+     * further redirecting.
+     * @param {String} chosenWorkoutName - String of the chosen workout
+     */
     function saveSpecific(chosenWorkoutName){
         currSavedWorkouts.forEach((workout) => {
             if (workout.workoutName === chosenWorkoutName){
@@ -55,6 +65,14 @@ function HomePage() {
   )
 }
 
+/**
+ * Function for creating the 3 workout summary with already savewd
+ * workouts if workouts exist.
+ * @param {Workout} currSavedWorkouts - The current saved workouts.
+ * @param {Function} saveSpecific - Function for usage when user wants
+ *                                  to view specific workout.
+ * @returns Summary list of 3 most recent workouts JSX component
+ */
 function SummaryWorkouts({currSavedWorkouts, saveSpecific}){
     let returnList = [];
     if (currSavedWorkouts.length < 1){
