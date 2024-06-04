@@ -8,6 +8,10 @@ import legs_placeholder from '../Images/legs.png'
 
 import './ViewMyProgress.css'
 
+/**
+ * A function for returning the progress page of the application
+ * @returns ViewMyProgress JSX Page
+ */
 function ViewMyProgress() {
     let currSavedWorkouts;
     if (localStorage.getItem("allWorkouts") != null){
@@ -16,6 +20,11 @@ function ViewMyProgress() {
         currSavedWorkouts = [];
     }
 
+    /**
+     * Saves the specific workout chosen for viewing by the user for 
+     * further redirecting.
+     * @param {String} chosenWorkoutName - String of the chosen workout
+     */
     function saveSpecific(chosenWorkoutName){
         currSavedWorkouts.forEach((workout) => {
             if (workout.workoutName === chosenWorkoutName){
@@ -30,7 +39,6 @@ function ViewMyProgress() {
       <div className="progress_wrapper">
 
         <GenericHeader />
-
 
         <div className="viewProgressDiv">
             <h2>Progress</h2>
@@ -78,6 +86,12 @@ function ViewMyProgress() {
   )
 }
 
+/**
+ * Generates the list of compound lifts the user has achieved, if there
+ * is any compound exercises done.
+ * @param {Array<Workout>} currSavedWorkouts - List of user saved workouts 
+ * @returns CompoundLifts JSX component
+ */
 function CompoundLifts({currSavedWorkouts}){
     if (currSavedWorkouts.length < 1){
         return(
@@ -121,6 +135,12 @@ function CompoundLifts({currSavedWorkouts}){
     }
 }
 
+/**
+ * Calculations done to generate the compound lifts 
+ * @param {Exercise} exercise - Current exercise to look at
+ * @param {Array<Integer>} compoundLift - Current compound lift leader
+ * @param {Array<Integer>} compoundLiftType - ---||--- type
+ */
 function compoundLiftCalculation(exercise, compoundLift, compoundLiftType){
     let kg_to_lbs_ratio = 2.20462;
     let lbs_to_kg_ratio = 0.453592;
@@ -156,6 +176,12 @@ function compoundLiftCalculation(exercise, compoundLift, compoundLiftType){
     })
 }
 
+/**
+ * Generates the list of all workouts done by the user.
+ * @param {Array<Workout>} currSavedWorkouts - List of user saved workouts
+ * @param {Function} saveSpecific - Function for saving the specific workout chosen for viewing for further redirecting.
+ * @returns Summary of all workouts done by the user JSX component
+ */
 function SummaryWorkouts({currSavedWorkouts, saveSpecific}){
     let returnList = [];
     if (currSavedWorkouts.length < 1){
@@ -214,6 +240,11 @@ function SummaryWorkouts({currSavedWorkouts, saveSpecific}){
     }
 }
 
+/**
+ * Generates the list of general progress done by the user.
+ * @param {Array<Workout>} currSavedWorkouts - List of user saved workouts.
+ * @returns GeneralProgressLi JSX component
+ */
 function GeneralProgressLi({currSavedWorkouts}){
     let returnList;
     if (currSavedWorkouts.length < 1){

@@ -4,6 +4,9 @@ import App from './App.jsx'
 import { BrowserRouter as Router} from 'react-router-dom';
 import './index.css'
 
+/**
+ * Main or Root file creating the react first "node".
+ */
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>

@@ -7,7 +7,13 @@ import Workout from '../Classes/Workout.js'
 import './SpecificWorkout.css'
 import './NewWorkout.css'
 
+/**
+ * A function returning a specific workout clicked by the user
+ * @returns SpecificWorkout JSX page
+ */
 function SpecificWorkout() {
+    // Retrieve the chosen workout picked by the user and use to make the
+    // view of the specific workout specific:
     let chosenWorkout = Workout.fromJsonParserBackToWorkout(JSON.parse(localStorage.getItem("chosenWorkout")));
 
     return (
@@ -37,12 +43,22 @@ function SpecificWorkout() {
   )
 }
 
+/**
+ * Function for showing the name of the workout
+ * @param {Workout} chosenWorkout - The chosen workout.
+ * @returns WorkoutName JSX component
+ */
 function WorkoutName({chosenWorkout}){
     return(
         <h1>{chosenWorkout.getName()}</h1>
     )
 }
 
+/**
+ * Function for showing the general info of the workout
+ * @param {Workout} chosenWorkout - The chosen workout.
+ * @returns WorkoutGeneralInfo JSX component
+ */
 function WorkoutGeneralInfo({chosenWorkout}){
     let generalInfo = []
 
@@ -85,7 +101,12 @@ function WorkoutGeneralInfo({chosenWorkout}){
     return generalInfo;
 }
 
-
+/**
+ * Function for showing the list of exercises associated
+ * with the workout
+ * @param {Workout} chosenWorkout - The chosen workout.
+ * @returns ExercisesInList JSX component
+ */
 function ExercisesInList({chosenWorkout}){
     if (chosenWorkout.getExercises() === 0){
         return;

@@ -7,6 +7,10 @@ import ViewMyProgress from './Pages/ViewMyProgress';
 import NewWorkout from './Pages/NewWorkout';
 import SpecificWorkout from './Pages/specificWorkout';
 
+/**
+ * Main page utilized by react on default.
+ * @returns All routes utilized.
+ */
 function App() {
   return (
     <>
